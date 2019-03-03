@@ -16,7 +16,7 @@ class LinebotController < ApplicationController
     events = client.parse_events_from(body)
     events.each { |event|
       case event
-        # メッセージが送信された場合の対応
+        # メッセージが送信された場合の対応（機能①）
       when Line::Bot::Event::Message
         case event.type
           # ユーザーからテキスト形式のメッセージが送られて来た場合
@@ -30,16 +30,6 @@ class LinebotController < ApplicationController
           # 当日朝のメッセージの送信の下限値は20％としているが、明日・明後日雨が降るかどうかの下限値は30％としている
           min_per = 30
           case input
-          # 開発者への匿名での意見送信機能
-          when /.*意見.*/
-            push =
-              "ご意見ありがとう！\nいただいた貴重なご意見は、誰が送ったのかは秘密で開発者に届けるからね！"
-            message2 = {
-              type: 'text',
-              text: "いただいたご意見↓\n#{input}"
-            }
-            dev_id = ENV["DEV_ID"]
-            response = client.push_message(dev_id, message2)
             # 「明日」or「あした」というワードが含まれる場合
           when /.*(明日|あした).*/
             # info[2]：明日の天気
@@ -100,12 +90,12 @@ class LinebotController < ApplicationController
           text: push
         }
         client.reply_message(event['replyToken'], message)
-        # LINEお友達追された場合
+        # LINEお友達追された場合（機能②）
       when Line::Bot::Event::Follow
         # 登録したユーザーのidをユーザーテーブルに格納
         line_id = event['source']['userId']
         User.create(line_id: line_id)
-        # LINEお友達解除された場合
+        # LINEお友達解除された場合（機能③）
       when Line::Bot::Event::Unfollow
         # お友達解除したユーザーのデータをユーザーテーブルから削除
         line_id = event['source']['userId']
@@ -123,3 +113,4 @@ class LinebotController < ApplicationController
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
   end
+end
