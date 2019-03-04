@@ -3,11 +3,13 @@ class LinebotController < ApplicationController
   require 'open-uri'
   require 'kconv'
   require 'rexml/document'
+  require 'time'
 
   # callbackアクションのCSRFトークン認証を無効
   protect_from_forgery :except => [:callback]
 
   def callback
+    time1 = Time.now
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
@@ -70,7 +72,7 @@ class LinebotController < ApplicationController
                  "雨に負けずファイト！！",
                  "雨だけどああたの明るさでみんなを元気にしてあげて(^^)"].sample
               push =
-                "今日の天気？\n今日は雨が降りそうだから傘があった方が安心だよ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word}"
+                "#{time1.strftime("m月%-d日")}の天気？\n今日は雨が降りそうだから傘があった方が安心だよ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word}"
             else
               word =
                 ["天気もいいから一駅歩いてみるのはどう？(^^)",
@@ -78,7 +80,7 @@ class LinebotController < ApplicationController
                  "素晴らしい一日になりますように(^^)",
                  "雨が降っちゃったらごめんね(><)"].sample
               push =
-                "今日の天気？\n今日は雨は降らなさそうだよ。\n#{word}"
+                "#{time1.strftime("m月%-d日")}の天気？\n今日は雨は降らなさそうだよ。\n#{word}"
             end
           end
           # テキスト以外（画像等）のメッセージが送られた場合
