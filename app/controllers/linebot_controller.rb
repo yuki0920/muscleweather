@@ -45,7 +45,7 @@ class LinebotController < ApplicationController
                 "明日(#{time2.strftime("%-m月%-d日")})は雨が降りそうだぞ。\n雨が降ってもジムには行こうな！\n今のところの降水確率はこんな感じだ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるな！"
             else
               push =
-                "明日(#{time2.strftime("%-m月%-d日")})は雨が降らない予定だぞ！\nジムまでランニングで行けるな\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるぜ！"
+                "明日(#{time2.strftime("%-m月%-d日")})は雨が降らない予定だぞ！\nジムまでランニングで行けるな。\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるぜ！"
             end
           when /.*(明後日|あさって).*/
             per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
@@ -53,24 +53,24 @@ class LinebotController < ApplicationController
             per18to24 = doc.elements[xpath + 'info[3]/rainfallchance/period[4]l'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "明後日(#{time3.strftime("%-m月%-d日")})は雨が降りそうだ…\nたまには家で自重トレーニングも良いだろうな\n当日の朝に雨が降りそうだったら教えるぞ！"
+                "明後日(#{time3.strftime("%-m月%-d日")})は雨が降りそうだ…\nたまには家で自重トレーニングも良いだろうな。\n当日の朝に雨が降りそうだったら教えるぞ！"
             else
               push =
-                "明後日(#{time3.strftime("%-m月%-d日")})の天気か？\n気が早いな！\n明後日は雨が降らない予定だぞ\nまた当日の朝の最新の天気予報で雨が降りそうだったら教えるからな！"
+                "明後日(#{time3.strftime("%-m月%-d日")})の天気か？\n気が早いな！\n明後日は雨が降らない予定だぞ。\nまた当日の朝の最新の天気予報で雨が降りそうだったら教えるからな！"
             end
           when /.*(素敵|ステキ|すてき|面白い|おもしろい|ありがと|すごい|スゴイ|スゴい|好き|頑張|がんば|ガンバ|筋肉| バルク|プロテイン|ジム|アミノ酸|マッチョ|格好|カッコ良い|たくましい|逞|イケメン).*/
             push =
               "ありがとな！\nちょっと、嬉しいじゃねえか..."
           when /.*(こんにちは|こんばんは|初めまして|はじめまして|おはよう).*/
             push =
-              "よう、元気か？\n声をかけてくれてありがとな\n今日もしっかりジムに行って汗を流そうぜ！"
+              "よう、元気か？\n声をかけてくれてありがとな！\n今日もしっかりジムに行って汗を流そうぜ！"
           else
             per06to12 = doc.elements[xpath + 'info/rainfallchance/period[2]l'].text
             per12to18 = doc.elements[xpath + 'info/rainfallchance/period[3]l'].text
             per18to24 = doc.elements[xpath + 'info/rainfallchance/period[4]l'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               word =
-                ["雨だけど元気出していこうな！",
+                ["雨が降っているということは、ジムが空いているぞ。チャンスだ！",
                  "雨に負けずテストステロン全開で行こうぜ！！！",
                  "雨だけどジムにはしっかり行こうな！"].sample
               push =
