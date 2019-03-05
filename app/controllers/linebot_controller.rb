@@ -46,10 +46,10 @@ class LinebotController < ApplicationController
             per18to24 = doc.elements[xpath + 'info[2]/rainfallchance/period[4]'].text
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               push =
-                "明日(#{time2.strftime("%-m月%-d日(#{wd[time.wday]})")})は雨が降りそうだぞ。\n雨が降ってもジムには行こうな！\n今のところの降水確率はこんな感じだ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるな！"
+                "明日(#{time2.strftime("%-m月%-d日")})は雨が降りそうだぞ。\n雨が降ってもジムには行こうな！\n今のところの降水確率はこんな感じだ。\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるな！"
             else
               push =
-                "明日(#{time2.strftime("%-m月%-d日(#{wd[time.wday]})")})は雨が降らない予定だぞ！\nジムまでランニングで行けるな。\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるぜ！"
+                "明日(#{time2.strftime("%-m月%-d日")})は雨が降らない予定だぞ！\nジムまでランニングで行けるな。\nまた明日の朝の最新の天気予報で雨が降りそうだったら教えるぜ！"
             end
           when /.*(明後日|あさって).*/
             per06to12 = doc.elements[xpath + 'info[3]/rainfallchance/period[2]l'].text
