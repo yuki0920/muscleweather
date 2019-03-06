@@ -5,6 +5,7 @@
 
 ## 概要
 筋トレ好きのための降水確率を通知するLINE BOTです。
+
 https://line.me/R/ti/p/%40yol6914w
 
 1.定時通知
@@ -17,6 +18,7 @@ https://line.me/R/ti/p/%40yol6914w
 
 ## 制作過程
 下記の技術チュートリアルを参考に、オリジナル要素として「コメントの日付表示」を実装。
+
 「今日雨降るよちゃん」を作ってみよう！【初学者向け】〜Ruby on RailsによるLINE botチュートリアル②〜
 https://note.mu/ysk1180/n/nabfead7e8502
 
