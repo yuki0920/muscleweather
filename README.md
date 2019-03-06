@@ -5,6 +5,7 @@
 
 ## 概要
 筋トレ好きのための降水確率を通知するLINE BOTです。
+https://line.me/R/ti/p/%40yol6914w
 
 1.定時通知
 東京の降水確率が30%以上の日の毎朝6時に降水確率を通知
@@ -21,7 +22,9 @@ https://note.mu/ysk1180/n/nabfead7e8502
 
 ## バージョン
 Ruby：2.5.1
+
 Rails：5.2.0
+
 PostgreSQL：10.1
 
 ## リリース日
