@@ -1,24 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サービス名
+筋肉雨予報
 
-Things you may want to cover:
+## 概要
+筋トレ好きのための降水確率を通知するLINE BOTです。
 
-* Ruby version
+1.定時通知
+東京の降水確率が30%以上の日の毎朝6時に降水確率を通知
 
-* System dependencies
+2.コメント応答
+「今日」や「明日」、「あいさつ」などいくつかの種類のコメントに対し応答
 
-* Configuration
+3.「定時通知」および「コメント応答」時のいずれにも、筋トレのモチベーションを高めるメッセージを付加
 
-* Database creation
+## 制作過程
+下記の技術チュートリアルを参考に、オリジナル要素として「コメントの日付表示」を実装。
+「今日雨降るよちゃん」を作ってみよう！【初学者向け】〜Ruby on RailsによるLINE botチュートリアル②〜
+https://note.mu/ysk1180/n/nabfead7e8502
 
-* Database initialization
+## バージョン
+Ruby：2.5.1
+Rails：5.2.0
+PostgreSQL：10.1
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## リリース日
+2019年3月3日
