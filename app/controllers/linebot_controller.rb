@@ -13,8 +13,6 @@ class LinebotController < ApplicationController
     time1 = Time.now
     time2 = time1 + 1.day
     time3 = time1 + 2.days
-    # 曜日の取得
-    wd = ["日", "月", "火", "水", "木", "金", "土"]
     # テンプレート
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
@@ -75,10 +73,10 @@ class LinebotController < ApplicationController
             if per06to12.to_i >= min_per || per12to18.to_i >= min_per || per18to24.to_i >= min_per
               word =
                 ["雨が降っているということは、ジムが空いているぞ。チャンスだ！",
-                 "雨に負けずテストステロン全開で行こうぜ！！！",
+                 "雨に負けずテストステロン全開で行こうぜ！",
                  "雨だけどジムにはしっかり行こうな！"].sample
               push =
-                "今日(#{time1.strftime("%-m月%-d日")})の天気？\n雨が降りそうだから傘とサラダチキン持って行けよ！\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word}"
+                "今日(#{time1.strftime("%-m月%-d日")})の天気？\n雨が降りそうだから折りたたみ傘とサラダチキン持って行けよ！\n　  6〜12時　#{per06to12}％\n　12〜18時　 #{per12to18}％\n　18〜24時　#{per18to24}％\n#{word}"
             else
               word =
                 ["ジムまでランニングで行けるな！",
@@ -91,7 +89,7 @@ class LinebotController < ApplicationController
           end
           # テキスト以外（画像等）のメッセージが送られた場合
         else
-          push = "テキスト以外は解せぬ"
+          push = "ぐぬぬ...テキスト以外は解せぬ"
         end
         message = {
           type: 'text',
