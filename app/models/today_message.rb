@@ -16,7 +16,7 @@ class TodayMessage
       ].sample
 
     <<~TEXT
-      今日(#{time1.strftime("%m月%d日")})の天気？
+      今日(#{formatted_date})の天気？
       雨が降りそうだから折りたたみ傘とサラダチキン持って行けよ！
       　06〜12時　#{@rainy_percent_06to12}％
       　12〜18時　#{@rainy_percent_12to18}％
@@ -35,7 +35,7 @@ class TodayMessage
       ].sample
 
     <<~TEXT
-      今日(#{time1.strftime("%m月%d日")})の天気？
+      今日(#{formatted_date})の天気？
       雨は降らなさそうだよ。
       #{comment_in_message}
     TEXT

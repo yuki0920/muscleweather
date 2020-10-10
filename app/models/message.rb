@@ -9,12 +9,12 @@ class Message
   end
 
   def deliver
-    user_message = event.message['text']
+    user_message = @event.message['text']
     forecast_raw_data = open(TOKYO_CITY_FORECAST_URL).read.toutf8
     forecast = REXML::Document.new(forecast_raw_data)
 
     message =
-      case event.type
+      case @event.type
       when Line::Bot::Event::MessageType::Text
         case user_message
         when /.*(明日|あした).*/
@@ -40,6 +40,6 @@ class Message
         'ぐぬぬ...テキスト以外は解せぬ'
       end
 
-    client.reply_message(event['replyToken'], {type: 'text', text: message})
+    @client.reply_message(@event['replyToken'], {type: 'text', text: message.chomp})
   end
 end
